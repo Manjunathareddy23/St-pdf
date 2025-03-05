@@ -38,9 +38,12 @@ def generate_questions(pdf_file, num_questions):
     prompt = f"Extract {num_questions} important questions from the following content:\n\n{text}"
 
     try:
-        model = genai.GenerativeModel("gemini-pro")
+        # Use 'gemini-pro-latest' instead of 'gemini-pro'
+        model = genai.GenerativeModel("gemini-pro-latest")
         response = model.generate_content(prompt)
+        
         return response.text if response.text else "⚠️ Could not generate questions."
+    
     except Exception as e:
         return f"❌ Error generating questions: {e}"
 
